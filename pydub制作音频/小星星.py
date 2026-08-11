@@ -9,7 +9,7 @@ import pathlib
 	4,4,3,3,2,2,1
 	]
 乐器 = 音乐制作.方波
-文件路径 = pathlib.Path(__file__).parent / "output" / "小星星.wav"
+文件路径 = pathlib.Path(__file__).parent / "output" / "小星星_2.wav"
 
 文件路径.parent.mkdir(parents=True, exist_ok=True)
 

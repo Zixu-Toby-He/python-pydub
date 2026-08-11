@@ -10,7 +10,7 @@ def 正弦波(phi):
 	return numpy.sin(phi)
 
 def 方波(phi):
-	return 2*(phi-π)-1
+	return 2*(phi - π) - 1
 
 def 三角波(phi):
 	方波(phi)*phi
