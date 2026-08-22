@@ -3,8 +3,9 @@ import pathlib
 import pyimy
 
 当前路径 = pathlib.Path(__file__).parent
+(当前路径 / "output").mkdir(parents = True, exist_ok = True)
 
-# ------------------- 使用示例 -------------------
+
 if __name__ == "__main__":
 	转换器 = pyimy.imy阅读器(当前路径 / "input" / "小星星.imy")
 	print("节拍速度：{} 拍 / min".format(转换器.节拍速度))
