@@ -77,6 +77,33 @@ class imy阅读器:
 					正弦波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
 					# 拼接
 					音频生成器 += 正弦波
+			case "方波":
+				for 频率, 时长 in 演奏信息:
+					# 生成方波（音量设为 -10 dBFS 避免爆音）
+					if (频率 == 0):
+						方波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+					else:
+						方波 = pydub.generators.Square(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+					# 拼接
+					音频生成器 += 方波
+			case "三角波":
+				for 频率, 时长 in 演奏信息:
+					# 生成三角波（音量设为 -10 dBFS 避免爆音）
+					if (频率 == 0):
+						三角波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+					else:
+						三角波 = pydub.generators.Triangle(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+					# 拼接
+					音频生成器 += 三角波
+			case "锯齿波":
+				for 频率, 时长 in 演奏信息:
+					# 生成锯齿波（音量设为 -10 dBFS 避免爆音，安排 5 % 的下降周期防止突变）
+					if (频率 == 0):
+						锯齿波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+					else:
+						锯齿波 = pydub.generators.Sawtooth(频率, duty_cycle=0.95).to_audio_segment(duration = 时长).apply_gain(-10)
+					# 拼接
+					音频生成器 += 锯齿波
 			case 无效乐器:
 				raise ValueError("暂不支持“{}”乐器".format(无效乐器))
 		音频生成器.export(文件路径, format = 格式)
