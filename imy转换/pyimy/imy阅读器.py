@@ -81,7 +81,7 @@ class imy阅读器:
 				for 频率, 时长 in 演奏信息:
 					# 生成方波（音量设为 -10 dBFS 避免爆音）
 					if (频率 == 0):
-						方波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+						方波 = pydub.AudioSegment.silent(duration = 时长)
 					else:
 						方波 = pydub.generators.Square(频率).to_audio_segment(duration = 时长).apply_gain(-10)
 					# 拼接
@@ -90,7 +90,7 @@ class imy阅读器:
 				for 频率, 时长 in 演奏信息:
 					# 生成三角波（音量设为 -10 dBFS 避免爆音）
 					if (频率 == 0):
-						三角波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+						三角波 = pydub.AudioSegment.silent(duration = 时长)
 					else:
 						三角波 = pydub.generators.Triangle(频率).to_audio_segment(duration = 时长).apply_gain(-10)
 					# 拼接
@@ -99,7 +99,7 @@ class imy阅读器:
 				for 频率, 时长 in 演奏信息:
 					# 生成锯齿波（音量设为 -10 dBFS 避免爆音，安排 5 % 的下降周期防止突变）
 					if (频率 == 0):
-						锯齿波 = pydub.generators.Sine(频率).to_audio_segment(duration = 时长).apply_gain(-10)
+						锯齿波 = pydub.AudioSegment.silent(duration = 时长)
 					else:
 						锯齿波 = pydub.generators.Sawtooth(频率, duty_cycle=0.95).to_audio_segment(duration = 时长).apply_gain(-10)
 					# 拼接
